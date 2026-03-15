@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Planner</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="title-group">
+        <p class="eyebrow">{month_label}</p>
+        <h1>Weekly Planner</h1>
+        <div class="header-row">
+          <p class="subtitle">{week_range}</p>
+          <nav class="week-nav" aria-label="Week navigation">
+            <a href="{previous_week_url}">Previous Week</a>
+            <a href="{today_url}">Today</a>
+            <a href="{next_week_url}">Next Week</a>
+          </nav>
+        </div>
+      </div>
+      <form method="post" action="/add" class="quick-add-form">
+        <input type="hidden" name="week" value="{week_key}">
+        <label class="sr-only" for="day">Day</label>
+        <select id="day" name="day">
+          {day_options}
+        </select>
+        <label class="sr-only" for="time">Time</label>
+        <input id="time" type="time" name="time">
+        <label class="sr-only" for="text">Task</label>
+        <input id="text" type="text" name="text" placeholder="Add a task" maxlength="120" required>
+        <button type="submit">Add</button>
+      </form>
+    </header>
+    <section class="calendar-shell">
+      {planner_html}
+    </section>
+  </main>
+</body>
+</html>
